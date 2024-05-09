@@ -14,6 +14,7 @@
 #include "CosmoInterface/measurements/ximeasurer.h" //own contribution
 #include "CosmoInterface/measurements/scalarsingletmeasurer.h"
 #include "CosmoInterface/measurements/gwsmeasurer.h"
+#include "CosmoInterface/measurements/etcmeasurer.h" //our own contribution
 #include "CosmoInterface/measurements/complexscalarmeasurer.h"
 #include "CosmoInterface/measurements/su2doubletmeasurer.h"
 #include "CosmoInterface/measurements/u1measurer.h"
@@ -48,7 +49,8 @@ namespace TempLat {
           expansion(par.expansion),    // Type of expansion (no expansion, fixed background, or self-consistent)
           eType(par.eType),   // Type of evolution algorithm (e.g. VV2, LF2...)
           scalarSingletMeasurer(model,filesManager, par, par.appendMode),   // Measurer for scalar fields
-          gwsMeasurer(model,filesManager, par, par.appendMode), 
+          gwsMeasurer(model,filesManager, par, par.appendMode),
+          etcMeasurer(model,filesManager, par, par.appendMode), //our own contribution
           complexScalarMeasurer(model,filesManager, par, par.appendMode),   // Measurer for complex scalars
           su2DoubletMeasurer(model,filesManager, par, par.appendMode),   // Measurer for SU(2) doublets
           u1Measurer(model,filesManager, par, par.appendMode),   // Measurer for U(1) gauge fields
@@ -60,6 +62,7 @@ namespace TempLat {
           PSMeasurer(par),
           // TestTransTrace(par),
           GWsPSMeasurer(par),
+          ETCPSMeasurer(par), //our own contribution
           xiOutputFreq(par.tOutXiFreq / par.dt), //own contribution
           ximethod(par.ximethod),//our own contribution
           xiMeasurer(model, filesManager, par, par.appendMode)//our own contribution
@@ -117,6 +120,7 @@ namespace TempLat {
               // Scalar singlet spectra
               gwsMeasurer.measureSpectra(model,t, GWsPSMeasurer);
               // GWs spectra
+              etcMeasurer.measureSpectra(model,t, ETCPSMeasurer);
               complexScalarMeasurer.measureSpectra(model,t, PSMeasurer);
               // Complex scalar spectra
               su2DoubletMeasurer.measureSpectra(model,t, PSMeasurer);
@@ -167,6 +171,7 @@ namespace TempLat {
 
         ScalarSingletMeasurer<T> scalarSingletMeasurer;
         GWsMeasurer<T> gwsMeasurer; 
+        ETCMeasurer<T> etcMeasurer; //our own contribution
         ComplexScalarMeasurer<T> complexScalarMeasurer;
         SU2DoubletMeasurer<T> su2DoubletMeasurer;
         U1Measurer<T> u1Measurer;
@@ -179,6 +184,8 @@ namespace TempLat {
         PowerSpectrumMeasurer PSMeasurer;
         // CheckTT TestTransTrace;
         GWsPowerSpectrumMeasurer GWsPSMeasurer;
+        ETCPowerSpectrumMeasurer ETCPSMeasurer; //our own contribution
+
 
         // our own contribution
         int xiOutputFreq;
