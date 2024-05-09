@@ -17,3 +17,9 @@ Do the following in the input file:
   - *ximethod = 2* calculates Xi using the area trick.
   - *ximethod = 3* calculates Xi using the line of the sight.
   - Any combination of these numbers (from lowest to highest) will calculate Xi according to the associated methods, e.g. *ximethod = 12*, *ximethod = 123*, *ximethod = 23*, etc.
+ 
+### Calculating ETC
+
+Do the following in the input file:
+
+- Set *WithETC = True*. The time steps for calculating the ETC is determined by *tOutputInfreq*
