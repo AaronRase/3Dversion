@@ -120,7 +120,7 @@ namespace TempLat {
             auto Tr2a = (Pu11 + Pu22 + Pu33);
             auto Tr2b = (Pu_s11 + Pu_s22 + Pu_s33);
 
-            return pow(model.aI,2*(model.alpha-3)) * abs(Tr1 - .5 * Tr2a * Tr2b);
+            return abs(Tr1 - .5 * Tr2a * Tr2b);
         }
 
         template<class Model, class Looper>
@@ -159,7 +159,7 @@ namespace TempLat {
             auto Tr1 = (Pu11 * conj(Pu11) + Pu12 * conj(Pu21) + Pu13 * conj(Pu31)) + (Pu21 * conj(Pu12) + Pu22 * conj(Pu22) + Pu23 * conj(Pu32)) + (Pu31 * conj(Pu13) + Pu32 * conj(Pu23) + Pu33 * conj(Pu33));
             auto Tr2 = (Pu11 + Pu22 + Pu33);
 
-            return pow(model.aI,2*(model.alpha-3)) * abs(Tr1 - .5 * Tr2 * conj(Tr2));
+            return abs(Tr1 - .5 * Tr2 * conj(Tr2));
         }
 
         template<class Model, class Looper>
